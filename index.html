@@ -736,14 +736,27 @@
             <li><a class="footer-link" href="#">Recipe directory </a></li>
             <li><a class="footer-link" href="#">Help center</a></li>
             <li><a class="footer-link" href="#">Privacy & terms</a></li>
-            <li>
-              <a href="javascript:void(0)" onclick="revisitCkyConsent()"
-                >Do Not Sell or Share My Personal Information</a
-              >
+            <li id="dynamicContent">
+              Do Not Sell or Share My Personal Information
             </li>
           </ul>
         </nav>
       </div>
     </footer>
   </body>
+  <script>
+    document
+      .getElementById("dynamicContent")
+      .addEventListener("click", function () {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById("dynamicContent").innerHTML =
+              xhr.responseText;
+          }
+        };
+        xhr.open("GET", "anchor.html", true);
+        xhr.send();
+      });
+  </script>
 </html>
