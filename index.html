@@ -42,7 +42,7 @@
       window.addEventListener("message", (event) => {
         console.log("fsdaf");
         console.log("origin", event.origin);
-        if (event.origin === "https://nipunraj-mozilor.github.io/anchor/") {
+        if (event.origin === "https://nipunraj-mozilor.github.io") {
           console.log("data", event.data);
           if (event.data === "revisitConsent") revisitCkyConsent();
         }
