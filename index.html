@@ -42,6 +42,7 @@
       window.addEventListener("message", (event) => {
         console.log("fsdaf");
         if (event.origin === "https://nipunraj-mozilor.github.io/anchor/") {
+          console.log("data", event.data);
           if (event.data === "revisitConsent") revisitCkyConsent();
         }
       });
