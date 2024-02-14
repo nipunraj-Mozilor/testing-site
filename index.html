@@ -53,6 +53,7 @@
       });
       let bannerLoaded = false;
       function waitForElement(selector) {
+        console.log("in wait for element", selector);
         const element = document.querySelector(selector);
         if (element) {
           const display = getDisplayStyle(element);
