@@ -47,7 +47,37 @@
       });
     </script>
     <script>
-      getCkyConsent();
+      window.addEventListener("load", function () {
+        waitForElement(".cky-consent-container");
+      });
+      let bannerLoaded = false;
+      function waitForElement(selector) {
+        const element = document.querySelector(selector);
+        if (element) {
+          const display = getDisplayStyle(element);
+          if (bannerLoaded) return;
+          if (display !== "none") {
+            document.dispatchEvent(new CustomEvent("cookieyes_banner_show"));
+            bannerLoaded = true;
+          }
+        }
+        setTimeout(() => {
+          waitForElement(selector);
+        }, 200);
+      }
+
+      function getDisplayStyle(element) {
+        return element.currentStyle
+          ? element.currentStyle["display"]
+          : window.getComputedStyle
+          ? window.getComputedStyle(element, null).getPropertyValue("display")
+          : "";
+      }
+    </script>
+    <script>
+      document.addEventListener("cookieyes_banner_show", function (event) {
+        getCkyConsent();
+      });
     </script>
 
     <!--  -->
