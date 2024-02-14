@@ -60,10 +60,11 @@
           console.log("before bannerLoaded");
           // if (bannerLoaded) return;
           console.log("after bannerLoaded");
-          if (display !== "none") {
-            document.dispatchEvent(new CustomEvent("cookieyes_banner_show"));
-            // bannerLoaded = true;
-          }
+          // if (display !== "none") {
+
+          document.dispatchEvent(new CustomEvent("cookieyes_banner_show"));
+          // bannerLoaded = true;
+          // }
         }
         setTimeout(() => {
           waitForElement(selector);
