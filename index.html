@@ -50,16 +50,18 @@
       window.addEventListener("load", function () {
         waitForElement(".cky-consent-container");
       });
-      // let bannerLoaded = false;
+      let bannerLoaded = false;
       function waitForElement(selector) {
         const element = document.querySelector(selector);
         if (element) {
           const display = getDisplayStyle(element);
-          // if (bannerLoaded) return;
+          if (bannerLoaded) return;
+          else {
+            document.dispatchEvent(new CustomEvent("cookieyes_banner_show"));
+            bannerLoaded = true;
+          }
           // if (display !== "none") {
 
-          document.dispatchEvent(new CustomEvent("cookieyes_banner_show"));
-          // bannerLoaded = true;
           // }
         }
         setTimeout(() => {
