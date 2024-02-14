@@ -51,14 +51,14 @@
         console.log("on reload");
         waitForElement(".cky-consent-container");
       });
-      let bannerLoaded = false;
+      // let bannerLoaded = false;
       function waitForElement(selector) {
         console.log("in wait for element", selector);
         const element = document.querySelector(selector);
         if (element) {
           const display = getDisplayStyle(element);
           console.log("before bannerLoaded");
-          if (bannerLoaded) return;
+          // if (bannerLoaded) return;
           console.log("after bannerLoaded");
           if (display !== "none") {
             document.dispatchEvent(new CustomEvent("cookieyes_banner_show"));
