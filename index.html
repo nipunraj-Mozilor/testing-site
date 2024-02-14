@@ -57,7 +57,9 @@
         const element = document.querySelector(selector);
         if (element) {
           const display = getDisplayStyle(element);
+          console.log("before bannerLoaded");
           if (bannerLoaded) return;
+          console.log("after bannerLoaded");
           if (display !== "none") {
             document.dispatchEvent(new CustomEvent("cookieyes_banner_show"));
             bannerLoaded = true;
