@@ -165,7 +165,9 @@
       document.addEventListener(
         "cookieyes_consent_update",
         function (eventData) {
+          console.log("eventData", eventData);
           const data = eventData.detail;
+          console.log("data", data);
           if (data.accepted.includes("advertisement")) {
             fbq("consent", "grant");
           }
