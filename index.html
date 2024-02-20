@@ -164,9 +164,10 @@
       fbq("track", "PageView");
       window.addEventListener(
         "load",
-        function (eventData) {
-          console.log("here", getCkyConsent().categories.advertisement);
-          // if (getCkyConsent.categories.)
+        function () {
+          if (getCkyConsent().categories.advertisement) {
+            fbq("consent", "grant");
+          }
         }
         // document.addEventListener(
         //   "cookieyes_consent_update",
