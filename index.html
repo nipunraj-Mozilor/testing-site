@@ -162,14 +162,15 @@
       fbq("consent", "revoke");
       fbq("init", "908572223824197");
       fbq("track", "PageView");
-      window.addEventListener(
-        "load",
-        function () {
-          if (getCkyConsent().categories.advertisement) {
-            fbq("consent", "grant");
-          }
+      window.addEventListener("load", function () {
+        console.log("res", window.getCkyConsent().categories);
+        if (
+          window.getCkyConsent &&
+          window.getCkyConsent().categories.advertisement
+        ) {
+          fbq("consent", "grant");
         }
-      );
+      });
     </script>
     <!-- facebook consent mode cookieyes end -->
   </head>
