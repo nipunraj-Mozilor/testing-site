@@ -166,7 +166,8 @@
         console.log("res", window.getCkyConsent().categories);
         if (
           window.getCkyConsent &&
-          window.getCkyConsent().categories.advertisement
+          window.getCkyConsent().categories.advertisement &&
+          window.getCkyConsent().categories.analytics
         ) {
           fbq("consent", "grant");
         }
