@@ -162,17 +162,23 @@
       fbq("consent", "revoke");
       fbq("init", "908572223824197");
       fbq("track", "PageView");
-      document.addEventListener(
-        "cookieyes_consent_update",
+
+      window.addEventListener(
+        "load",
         function (eventData) {
-          console.log("eventData", eventData);
-          const data = eventData.detail;
-          console.log("data", data);
-          if (data.accepted.includes("advertisement")) {
-            fbq("consent", "grant");
-            console.log("here", fbq("consent", "grant"));
-          }
+          console.log(getCkyConsent);
         }
+        // document.addEventListener(
+        //   "cookieyes_consent_update",
+        //   function (eventData) {
+        //     console.log("eventData", eventData);
+        //     const data = eventData.detail;
+        //     console.log("data", data);
+        //     if (data.accepted.includes("advertisement")) {
+        //       fbq("consent", "grant");
+        //       console.log("here", fbq("consent", "grant"));
+        //     }
+        //   }
       );
     </script>
     <!-- facebook consent mode cookieyes end -->
