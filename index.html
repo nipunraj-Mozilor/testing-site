@@ -85,6 +85,13 @@
       var checktimeout = 0;
       window.addEventListener("load", function () {
         waitForElement(".cky-consent-container", function () {
+          let regionCode = window.cookieyes._ckyStore._ruleData._regionCode;
+
+          if (regionCode !== "CA") {
+            const container = document.querySelector(".cky-consent-container");
+            container.style.visibility = "hidden";
+          }
+
           const btnWrapper = document.querySelector(".cky-notice-btn-wrapper");
           const acceptAllButton = document.createElement("button");
           const closBtn = document.querySelector(".cky-banner-btn-close");
@@ -125,17 +132,17 @@
     </script>
     <!--  -->
     <!-- CY-1136  -->
-    <script>
+    <!-- <script>
       var checktimeout = 0;
       window.addEventListener("load", function () {
         waitForElement(".cky-consent-container", function () {
           console.log("ere");
           let regionCode = window.cookieyes._ckyStore._ruleData._regionCode;
           console.log("regionCode", regionCode);
-          // if (regionCode !== "CA") {
-          //   const container = document.querySelector(".cky-consent-container");
-          //   container.style.visibility = "hidden";
-          // }
+          if (regionCode !== "CA") {
+            const container = document.querySelector(".cky-consent-container");
+            container.style.visibility = "hidden";
+          }
         });
       });
 
@@ -149,7 +156,7 @@
           }, 100);
         }
       }
-    </script>
+    </script> -->
 
     <!--  -->
     <script
