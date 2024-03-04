@@ -37,6 +37,56 @@
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
     <!-- End Google Tag Manager -->
+    <script>
+      var checktimeout = 0;
+      window.addEventListener("load", function () {
+        waitForElement(".cky-consent-container", function () {
+          let regionCode = window.cookieyes._ckyStore._ruleData._regionCode;
+
+          if (regionCode === "CA") {
+            const container = document.querySelector(".cky-consent-container");
+            container.style.visibility = "visible";
+          }
+
+          const btnWrapper = document.querySelector(".cky-notice-btn-wrapper");
+          const acceptAllButton = document.createElement("button");
+          const closBtn = document.querySelector(".cky-banner-btn-close");
+
+          if (btnWrapper) {
+            const doNotSellButton = btnWrapper.querySelector(
+              ".cky-btn-do-not-sell"
+            );
+            doNotSellButton.style.padding = "8px 27px";
+            doNotSellButton.style.border = "2px solid #1863dc";
+            doNotSellButton.style.marginRight = "14px";
+          }
+          closBtn ? (closBtn.style.display = "none") : null;
+          if (acceptAllButton) {
+            acceptAllButton.innerText = "Accept all";
+            acceptAllButton.classList.add("cky-btn", "cky-btn-reject");
+            acceptAllButton.onclick = function () {
+              const closeAction = document.querySelector(
+                ".cky-banner-btn-close"
+              );
+              closeAction.click();
+            };
+          }
+          btnWrapper.appendChild(acceptAllButton);
+        });
+      });
+
+      function waitForElement(selector, callback) {
+        const element = document.querySelector(selector);
+        if (element) return callback();
+        checktimeout++;
+        if (checktimeout < 120) {
+          setTimeout(function () {
+            waitForElement(selector, callback);
+          }, 500);
+        }
+      }
+    </script>
+
     <!--  -->
     <!-- <script>
       window.addEventListener("message", (event) => {
