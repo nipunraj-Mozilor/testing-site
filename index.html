@@ -49,7 +49,6 @@
 
           const btnWrapper = document.querySelector(".cky-notice-btn-wrapper");
           const acceptAllButton = document.createElement("button");
-          const closBtn = document.querySelector(".cky-banner-btn-close");
 
           if (btnWrapper) {
             const doNotSellButton = btnWrapper.querySelector(
@@ -59,7 +58,6 @@
             doNotSellButton.style.border = "2px solid #1863dc";
             doNotSellButton.style.marginRight = "14px";
           }
-          closBtn ? (closBtn.style.display = "none") : null;
           if (acceptAllButton) {
             acceptAllButton.innerText = "I understand";
             acceptAllButton.classList.add("cky-btn", "cky-btn-reject");
