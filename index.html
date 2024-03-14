@@ -99,6 +99,7 @@
             function (eventData) {
               const data = eventData.detail;
               if (data.rejected.includes("analytics")) {
+                console.log("here in console.");
                 const analyticsToggle = document.querySelector(
                   "#ckySwitchanalytics"
                 );
