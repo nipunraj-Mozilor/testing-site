@@ -86,7 +86,7 @@
     <!-- CY-1298  -->
     <script>
       window.addEventListener("load", function () {
-        waitForElement(".cky-preference-center");
+        waitForElement(".cky-consent-container");
       });
 
       let bannerLoaded = false;
@@ -104,7 +104,8 @@
                 );
                 console.log("here", analyticsToggle);
                 console.log("here", analyticsToggle.click());
-                analyticsToggle.click();
+                analyticsToggle.onclick;
+                performBannerAction("accept_partial");
               }
             }
           );
