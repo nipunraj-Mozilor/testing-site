@@ -94,8 +94,15 @@
         const element = document.querySelector(selector);
         if (element) {
           if (bannerLoaded) return;
-          const analyticsToggle = document.querySelector(".cky-switch");
-          console.log("here", analyticsToggle);
+          document.addEventListener(
+            "cookieyes_consent_update",
+            function (eventData) {
+              const analyticsToggle = document.querySelector(
+                "#ckySwitchanalytics"
+              );
+              analyticsToggle.click();
+            }
+          );
         } else {
           setTimeout(() => {
             waitForElement(selector);
