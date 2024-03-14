@@ -97,10 +97,13 @@
           document.addEventListener(
             "cookieyes_consent_update",
             function (eventData) {
-              const analyticsToggle = document.querySelector(
-                "#ckySwitchanalytics"
-              );
-              analyticsToggle.click();
+              const data = eventData.detail;
+              if (data.accepted.includes("analytics")) {
+                const analyticsToggle = document.querySelector(
+                  "#ckySwitchanalytics"
+                );
+                analyticsToggle.click();
+              }
             }
           );
         } else {
