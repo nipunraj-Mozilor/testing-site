@@ -94,31 +94,43 @@
         const element = document.querySelector(selector);
         if (element) {
           if (bannerLoaded) return;
-          bannerAction();
-          bannerLoaded = true;
+          document.addEventListener(
+            "cookieyes_consent_update",
+            function (eventData) {
+              const data = eventData.detail;
+              if (data.rejected.includes("analytics")) {
+                const analyticsToggle = document.querySelector(
+                  "#ckySwitchanalytics"
+                );
+                analyticsToggle.click();
+                performBannerAction("accept_partial");
+                bannerLoaded = true;
+              }
+            }
+          );
         } else {
           setTimeout(() => {
             waitForElement(selector);
           }, 200);
         }
       }
-      bannerAction();
-      function bannerAction() {
-        document.addEventListener(
-          "cookieyes_consent_update",
-          function (eventData) {
-            const data = eventData.detail;
-            if (data.rejected.includes("analytics")) {
-              const analyticsToggle = document.querySelector(
-                "#ckySwitchanalytics"
-              );
-              analyticsToggle.click();
-              performBannerAction("accept_partial");
-              // bannerLoaded = true;
-            }
-          }
-        );
-      }
+      // bannerAction();
+      // function bannerAction() {
+      //   document.addEventListener(
+      //     "cookieyes_consent_update",
+      //     function (eventData) {
+      //       const data = eventData.detail;
+      //       if (data.rejected.includes("analytics")) {
+      //         const analyticsToggle = document.querySelector(
+      //           "#ckySwitchanalytics"
+      //         );
+      //         analyticsToggle.click();
+      //         performBannerAction("accept_partial");
+      //         // bannerLoaded = true;
+      //       }
+      //     }
+      //   );
+      // }
     </script>
     <!--  -->
     <!-- <script>
