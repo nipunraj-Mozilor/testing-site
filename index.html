@@ -37,7 +37,7 @@
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
     <!-- End Google Tag Manager -->
-    <script>
+    <!-- <script>
       var checktimeout = 0;
       window.addEventListener("load", function () {
         waitForElement(".cky-consent-container", function () {
@@ -80,6 +80,26 @@
           setTimeout(function () {
             waitForElement(selector, callback);
           }, 500);
+        }
+      }
+    </script> -->
+    <!-- CY-1298  -->
+    <script>
+      window.addEventListener("load", function () {
+        waitForElement(".cky-consent-container");
+      });
+
+      let bannerLoaded = false;
+      function waitForElement(selector) {
+        const element = document.querySelector(selector);
+        if (element) {
+          if (bannerLoaded) return;
+          const analyticsToggle = document.querySelector(".cky-switch");
+          console.log("here", analyticsToggle);
+        } else {
+          setTimeout(() => {
+            waitForElement(selector);
+          }, 200);
         }
       }
     </script>
