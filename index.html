@@ -98,7 +98,7 @@
             "cookieyes_consent_update",
             function (eventData) {
               const data = eventData.detail;
-              if (data.accepted.includes("analytics")) {
+              if (data.rejected.includes("analytics")) {
                 const analyticsToggle = document.querySelector(
                   "#ckySwitchanalytics"
                 );
