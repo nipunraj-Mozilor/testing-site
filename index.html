@@ -37,6 +37,49 @@
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
     <!-- End Google Tag Manager -->
+    <!-- new -->
+    <script>
+      var checktimeout = 0;
+      window.addEventListener("load", function () {
+        waitForElement(".cky-consent-container", function () {
+          const btnWrapper = document.querySelector(".cky-notice-btn-wrapper");
+          const acceptAllButton = document.createElement("button");
+
+          if (btnWrapper) {
+            const doNotSellButton = btnWrapper.querySelector(
+              ".cky-btn-do-not-sell"
+            );
+            doNotSellButton.style.padding = "8px 27px";
+            doNotSellButton.style.border = "2px solid #1863dc";
+            doNotSellButton.style.marginRight = "14px";
+          }
+          if (acceptAllButton) {
+            acceptAllButton.innerText = "Accept";
+            acceptAllButton.classList.add("cky-btn", "cky-btn-reject");
+            acceptAllButton.onclick = function () {
+              const closeAction = document.querySelector(
+                ".cky-banner-btn-close"
+              );
+              closeAction.click();
+            };
+          }
+          btnWrapper.appendChild(acceptAllButton);
+        });
+      });
+
+      function waitForElement(selector, callback) {
+        const element = document.querySelector(selector);
+        if (element) return callback();
+        checktimeout++;
+        if (checktimeout < 120) {
+          setTimeout(function () {
+            waitForElement(selector, callback);
+          }, 500);
+        }
+      }
+    </script>
+
+    <!--  -->
     <!-- <script>
       var checktimeout = 0;
       window.addEventListener("load", function () {
@@ -84,7 +127,7 @@
       }
     </script> -->
     <!-- CY-1298  -->
-    <script>
+    <!-- <script>
       window.addEventListener("load", function () {
         waitForElement(".cky-consent-container");
       });
@@ -114,7 +157,7 @@
           }, 200);
         }
       }
-    </script>
+    </script> -->
     <!--  -->
     <!-- <script>
       window.addEventListener("message", (event) => {
