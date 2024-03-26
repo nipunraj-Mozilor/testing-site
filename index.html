@@ -37,6 +37,19 @@
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
     <!-- End Google Tag Manager -->
+    <script>
+      document.addEventListener(
+        "cookieyes_consent_update",
+        function (eventData) {
+          console.log("outside");
+          const data = eventData.detail;
+          if (data.accepted.includes("analytics")) {
+            console.log("inside");
+            // perform desired action.
+          }
+        }
+      );
+    </script>
     <!-- new -->
     <script>
       console.log("law", window.getCkyConsent().activeLaw);
