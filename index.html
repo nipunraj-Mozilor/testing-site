@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Start cookieyes banner -->
+    <script
+      id="cookieyes"
+      type="text/javascript"
+      src="https://cdn-cookieyes.com/client_data/03acc21a4230f3074bd9c44c/script.js"
+    ></script>
+    <!-- End cookieyes banner -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
@@ -36,53 +43,6 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
-    <!-- CYS-1494 -->
-    <script>
-      window.addEventListener("load", function () {
-        waitForElement(".cky-consent-container");
-      });
-      let bannerLoaded = false;
-      function waitForElement(selector) {
-        const element = document.querySelector(selector);
-        if (element) {
-          if (bannerLoaded) return;
-          const btnCloseBanner = document.querySelector(
-            ".cky-banner-btn-close"
-          );
-          const btnClose = document.querySelector(".cky-btn-close");
-          btnCloseBanner.addEventListener("click", handleBannerClose);
-          btnClose.addEventListener("click", handleBannerClose);
-
-          // btnCloseBanner.addEventListener("click", function () {
-          //   const analyticsToggle = document.querySelector(
-          //     "#ckySwitchanalytics"
-          //   );
-          //   analyticsToggle.click();
-          //   performBannerAction("accept_partial");
-          //   bannerLoaded = true;
-          // });
-          // btnClose.addEventListener("click", function () {
-          //   const analyticsToggle = document.querySelector(
-          //     "#ckySwitchanalytics"
-          //   );
-          //   analyticsToggle.click();
-          //   performBannerAction("accept_partial");
-          //   bannerLoaded = true;
-          // });
-        } else {
-          setTimeout(() => {
-            waitForElement(selector);
-          }, 200);
-        }
-      }
-      function handleBannerClose() {
-        const analyticsToggle = document.querySelector("#ckySwitchanalytics");
-        analyticsToggle.click();
-        performBannerAction("accept_partial");
-        bannerLoaded = true;
-      }
-    </script>
-    <!--  -->
 
     <!-- End Google Tag Manager -->
     <!-- <script>
