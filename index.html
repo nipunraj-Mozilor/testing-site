@@ -41,28 +41,29 @@
       window.addEventListener("load", function () {
         waitForElement(".cky-consent-container");
       });
-      // let bannerLoaded = false;
+      let bannerLoaded = false;
       function waitForElement(selector) {
         const element = document.querySelector(selector);
         if (element) {
-          document.addEventListener(
-            "cookieyes_consent_update",
-            function (eventData) {
-              console.log("fsfa");
-            }
+          if (bannerLoaded) return;
+          const btnCloseBanner = document.querySelector(
+            ".cky-banner-btn-close"
           );
+          const btnClose = document.querySelector(".cky-btn-close");
+
+          btnClose.addEventListener("click", function () {
+            const analyticsToggle = document.querySelector(
+              "#ckySwitchanalytics"
+            );
+            analyticsToggle.click();
+            performBannerAction("accept_partial");
+            bannerLoaded = true;
+          });
         } else {
           setTimeout(() => {
             waitForElement(selector);
           }, 200);
         }
-      }
-
-      function handleClose() {
-        const analyticsToggle = document.querySelector("#ckySwitchanalytics");
-        analyticsToggle.click();
-        performBannerAction("accept_partial");
-        // bannerLoaded = true;
       }
     </script>
     <!--  -->
