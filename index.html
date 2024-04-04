@@ -36,8 +36,23 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
-    <!-- End Google Tag Manager -->
+    <!-- CYS-1494 -->
     <script>
+        var checktimeout = 0;
+        window.addEventListener("load", function () {
+         waitForElement(".cky-consent-container", function () {
+           const closBtn = document.querySelector(
+        ".cky-banner-btn-close"
+      );
+       console.log(closBtn);
+         }
+        )}
+    </script>
+
+    <!--  -->
+
+    <!-- End Google Tag Manager -->
+    <!-- <script>
       document.addEventListener(
         "cookieyes_consent_update",
         function (eventData) {
@@ -49,9 +64,9 @@
           }
         }
       );
-    </script>
+    </script> -->
     <!-- new -->
-    <script>
+    <!-- <script>
       console.log("law", window.getCkyConsent().activeLaw);
       var checktimeout = 0;
       window.addEventListener("load", function () {
@@ -91,7 +106,7 @@
           }, 500);
         }
       }
-    </script>
+    </script> -->
 
     <!--  -->
     <!-- <script>
