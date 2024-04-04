@@ -41,11 +41,11 @@
       window.addEventListener("load", function () {
         waitForElement(".cky-consent-container");
       });
-      let bannerLoaded = false;
+      // let bannerLoaded = false;
       function waitForElement(selector) {
         const element = document.querySelector(selector);
         if (element) {
-          if (bannerLoaded) return;
+          // if (bannerLoaded) return;
           const btnCloseBanner = document.querySelector(
             ".cky-banner-btn-close"
           );
@@ -68,7 +68,7 @@
         const analyticsToggle = document.querySelector("#ckySwitchanalytics");
         analyticsToggle.click();
         performBannerAction("accept_partial");
-        bannerLoaded = true;
+        // bannerLoaded = true;
       }
     </script>
     <!--  -->
