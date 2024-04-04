@@ -47,12 +47,10 @@
         if (element) {
           if (bannerLoaded) return;
           const btnClose = document.querySelector(".cky-banner-btn-close");
-          console.log("buton", btnClose);
           btnClose.addEventListener("click", function () {
             const analyticsToggle = document.querySelector(
               "#ckySwitchanalytics"
             );
-            console.log("here", analyticsToggle);
             analyticsToggle.click();
             performBannerAction("accept_partial");
             bannerLoaded = true;
