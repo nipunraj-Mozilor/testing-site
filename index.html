@@ -39,27 +39,36 @@
     <!-- CYS-1494 -->
     <script>
       window.addEventListener("load", function () {
-        waitForElement(".cky-preference-center");
+        waitForElement(".cky-consent-container");
       });
       let bannerLoaded = false;
       function waitForElement(selector) {
         const element = document.querySelector(selector);
         if (element) {
           if (bannerLoaded) return;
-          const btnClose = document.querySelector(".cky-banner-btn-close");
-          btnClose.addEventListener("click", function () {
-            const analyticsToggle = document.querySelector(
-              "#ckySwitchanalytics"
-            );
-            analyticsToggle.click();
-            performBannerAction("accept_partial");
-            bannerLoaded = true;
-          });
+          const btnCloseBanner = document.querySelector(
+            ".cky-banner-btn-close"
+          );
+          const btnClose = document.querySelector(".cky-btn-close");
+
+          if (btnCloseBanner) {
+            btnCloseBanner.addEventListener("click", handleClose);
+          }
+          if (btnClose) {
+            btnCloseBanner.addEventListener("click", handleClose);
+          }
         } else {
           setTimeout(() => {
             waitForElement(selector);
           }, 200);
         }
+      }
+
+      function handleClose() {
+        const analyticsToggle = document.querySelector("#ckySwitchanalytics");
+        analyticsToggle.click();
+        performBannerAction("accept_partial");
+        bannerLoaded = true;
       }
     </script>
     <!--  -->
