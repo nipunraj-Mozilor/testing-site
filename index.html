@@ -48,6 +48,7 @@
           document.addEventListener(
             "cookieyes_consent_update",
             function (eventData) {
+              console.log("log");
               const data = eventData.detail;
               const btnCloseBanner = document.querySelector(
                 ".cky-banner-btn-close"
