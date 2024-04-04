@@ -49,30 +49,37 @@
           const btnCloseBanner = document.querySelector(
             ".cky-banner-btn-close"
           );
+          btnCloseBanner.addEventListener("click", handleBannerClose);
           const btnClose = document.querySelector(".cky-btn-close");
-          btnCloseBanner.addEventListener("click", function () {
-            console.log("nipun");
-            const analyticsToggle = document.querySelector(
-              "#ckySwitchanalytics"
-            );
-            analyticsToggle.click();
-            performBannerAction("accept_partial");
-            bannerLoaded = true;
-          });
-          btnClose.addEventListener("click", function () {
-            console.log("nipun");
-            const analyticsToggle = document.querySelector(
-              "#ckySwitchanalytics"
-            );
-            analyticsToggle.click();
-            performBannerAction("accept_partial");
-            bannerLoaded = true;
-          });
+          btnClose.addEventListener("click", handleBannerClose);
+
+          // btnCloseBanner.addEventListener("click", function () {
+          //   const analyticsToggle = document.querySelector(
+          //     "#ckySwitchanalytics"
+          //   );
+          //   analyticsToggle.click();
+          //   performBannerAction("accept_partial");
+          //   bannerLoaded = true;
+          // });
+          // btnClose.addEventListener("click", function () {
+          //   const analyticsToggle = document.querySelector(
+          //     "#ckySwitchanalytics"
+          //   );
+          //   analyticsToggle.click();
+          //   performBannerAction("accept_partial");
+          //   bannerLoaded = true;
+          // });
         } else {
           setTimeout(() => {
             waitForElement(selector);
           }, 200);
         }
+      }
+      function handleBannerClose() {
+        const analyticsToggle = document.querySelector("#ckySwitchanalytics");
+        analyticsToggle.click();
+        performBannerAction("accept_partial");
+        bannerLoaded = true;
       }
     </script>
     <!--  -->
