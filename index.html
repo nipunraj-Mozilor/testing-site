@@ -50,6 +50,15 @@
             ".cky-banner-btn-close"
           );
           const btnClose = document.querySelector(".cky-btn-close");
+          btnCloseBanner.addEventListener("click", function () {
+            console.log("nipun");
+            const analyticsToggle = document.querySelector(
+              "#ckySwitchanalytics"
+            );
+            analyticsToggle.click();
+            performBannerAction("accept_partial");
+            bannerLoaded = true;
+          });
           btnClose.addEventListener("click", function () {
             console.log("nipun");
             const analyticsToggle = document.querySelector(
