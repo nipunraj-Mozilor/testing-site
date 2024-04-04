@@ -43,11 +43,11 @@
       });
       let bannerLoaded = false;
       function waitForElement(selector) {
-        console.log("nipun");
         const element = document.querySelector(selector);
         if (element) {
           if (bannerLoaded) return;
           const btnClose = document.querySelector(".cky-banner-btn-close");
+          console.log("buton", btnClose);
           btnClose.addEventListener("click", function () {
             const analyticsToggle = document.querySelector(
               "#ckySwitchanalytics"
