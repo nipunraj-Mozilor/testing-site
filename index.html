@@ -48,21 +48,9 @@
           document.addEventListener(
             "cookieyes_consent_update",
             function (eventData) {
-              console.log("log");
-              const data = eventData.detail;
-              const btnCloseBanner = document.querySelector(
-                ".cky-banner-btn-close"
-              );
-              const btnClose = document.querySelector(".cky-btn-close");
-              if (btnCloseBanner) {
-                btnCloseBanner.addEventListener("click", handleClose);
-              }
-              if (btnClose) {
-                btnCloseBanner.addEventListener("click", handleClose);
-              }
+              console.log("erer");
             }
           );
-          // if (bannerLoaded) return;
         } else {
           setTimeout(() => {
             waitForElement(selector);
