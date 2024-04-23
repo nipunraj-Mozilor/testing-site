@@ -68,20 +68,21 @@
         }
       }
       if (functionalConsent) {
-        addScript();
+        externalScript();
       } else {
         document.addEventListener(
           "cookieyes_consent_update",
           function (eventData) {
             const data = eventData.detail;
             if (data.accepted.includes("functional")) {
-              addScript();
+              externalScript();
             }
           }
         );
       }
-      function addScript() {
-        console.log("nipun raj");
+      function externalScript() {
+        //add your logic here
+        console.log("working");
       }
     </script>
 
