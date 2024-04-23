@@ -55,7 +55,6 @@
       const cookieYesConsent = cookies["cookieyes-consent"];
       let functionalConsent = false;
       if (cookieYesConsent) {
-        console.log("in first");
         const cookiePairs = cookieYesConsent
           .split(",")
           .map((pair) => pair.trim());
@@ -65,7 +64,6 @@
           cookieObj[key] = value;
         });
         if (cookieObj.functional === "yes") {
-          console.log("here again");
           functionalConsent = true;
         }
       }
