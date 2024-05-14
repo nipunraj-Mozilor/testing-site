@@ -102,6 +102,31 @@
       gtag("config", "G-G5Y651DQKV");
     </script>
 
+    <!-- CA pop up -->
+    <script>
+      var checktimeout = 0;
+      window.addEventListener("load", function () {
+        waitForElement(".cky-consent-container", function () {
+          let regionCode = window.cookieyes._ckyStore._ruleData._regionCode;
+          if (regionCode === "CA") {
+            const container = document.querySelector(".cky-consent-container");
+            container.style.visibility = "unset";
+          }
+        });
+      });
+
+      function waitForElement(selector, callback) {
+        const element = document.querySelector(selector);
+        if (element) return callback();
+        checktimeout++;
+        if (checktimeout < 120) {
+          setTimeout(function () {
+            waitForElement(selector, callback);
+          }, 500);
+        }
+      }
+    </script>
+
     <!-- End Google Tag Manager -->
     <!-- <script>
       document.addEventListener(
@@ -159,53 +184,6 @@
       }
     </script> -->
 
-    <!--  -->
-    <!-- <script>
-      var checktimeout = 0;
-      window.addEventListener("load", function () {
-        waitForElement(".cky-consent-container", function () {
-          let regionCode = window.cookieyes._ckyStore._ruleData._regionCode;
-          if (regionCode === "CA") {
-            const container = document.querySelector(".cky-consent-container");
-            container.style.visibility = "unset";
-          }
-
-          const btnWrapper = document.querySelector(".cky-notice-btn-wrapper");
-          const acceptAllButton = document.createElement("button");
-
-          if (btnWrapper) {
-            const doNotSellButton = btnWrapper.querySelector(
-              ".cky-btn-do-not-sell"
-            );
-            doNotSellButton.style.padding = "8px 27px";
-            doNotSellButton.style.border = "2px solid #1863dc";
-            doNotSellButton.style.marginRight = "14px";
-          }
-          if (acceptAllButton) {
-            acceptAllButton.innerText = "I understand";
-            acceptAllButton.classList.add("cky-btn", "cky-btn-reject");
-            acceptAllButton.onclick = function () {
-              const closeAction = document.querySelector(
-                ".cky-banner-btn-close"
-              );
-              closeAction.click();
-            };
-          }
-          btnWrapper.appendChild(acceptAllButton);
-        });
-      });
-
-      function waitForElement(selector, callback) {
-        const element = document.querySelector(selector);
-        if (element) return callback();
-        checktimeout++;
-        if (checktimeout < 120) {
-          setTimeout(function () {
-            waitForElement(selector, callback);
-          }, 500);
-        }
-      }
-    </script> -->
     <!-- CY-1298  -->
     <!-- <script>
       window.addEventListener("load", function () {
@@ -281,56 +259,6 @@
       });
     </script> -->
     <!--  -->
-    <!-- CY-1025 -->
-    <!-- <script>
-      var checktimeout = 0;
-      window.addEventListener("load", function () {
-        waitForElement(".cky-consent-container", function () {
-          let regionCode = window.cookieyes._ckyStore._ruleData._regionCode;
-
-          if (regionCode !== "CA") {
-            const container = document.querySelector(".cky-consent-container");
-            container.style.visibility = "hidden";
-          }
-
-          const btnWrapper = document.querySelector(".cky-notice-btn-wrapper");
-          const acceptAllButton = document.createElement("button");
-          const closBtn = document.querySelector(".cky-banner-btn-close");
-
-          if (btnWrapper) {
-            const doNotSellButton = btnWrapper.querySelector(
-              ".cky-btn-do-not-sell"
-            );
-            doNotSellButton.style.padding = "8px 27px";
-            doNotSellButton.style.border = "2px solid #1863dc";
-            doNotSellButton.style.marginRight = "14px";
-          }
-          closBtn ? (closBtn.style.display = "none") : null;
-          if (acceptAllButton) {
-            acceptAllButton.innerText = "Accept all";
-            acceptAllButton.classList.add("cky-btn", "cky-btn-reject");
-            acceptAllButton.onclick = function () {
-              const closeAction = document.querySelector(
-                ".cky-banner-btn-close"
-              );
-              closeAction.click();
-            };
-          }
-          btnWrapper.appendChild(acceptAllButton);
-        });
-      });
-
-      function waitForElement(selector, callback) {
-        const element = document.querySelector(selector);
-        if (element) return callback();
-        checktimeout++;
-        if (checktimeout < 120) {
-          setTimeout(function () {
-            waitForElement(selector, callback);
-          }, 500);
-        }
-      }
-    </script> -->
     <!--  -->
     <!-- CY-1136  -->
     <!-- <script>
