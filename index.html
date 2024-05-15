@@ -89,7 +89,10 @@
       document.addEventListener(
         "cookieyes_consent_update",
         function (eventData) {
-          microsoft_ads_consent_update();
+          const data = eventData.detail;
+          if (data.accepted.includes("analytics")) {
+            microsoft_ads_consent_update();
+          }
         }
       );
     </script>
