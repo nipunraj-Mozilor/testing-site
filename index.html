@@ -44,11 +44,10 @@
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
 
-    <script>
+    <!-- <script>
       var checktimeout = 0;
       window.addEventListener("load", function () {
         waitForElement(".cky-consent-container", function () {
-          console.log("erjere");
           console.log(window.getCkyConsent().isUserActionCompleted);
         });
       });
@@ -63,6 +62,18 @@
           }, 500);
         }
       }
+    </script> -->
+    <script>
+      document.addEventListener(
+        "cookieyes_consent_update",
+        function (eventData) {
+          const data = eventData.detail;
+          if (window.getCkyConsent().isUserActionCompleted) {
+            console.log("user here");
+            // perform desired action.
+          }
+        }
+      );
     </script>
     <!-- google analytics Google tag (gtag.js) -->
     <script
