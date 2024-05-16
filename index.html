@@ -44,73 +44,49 @@
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
     <!-- mirosoft UET -->
-<script>
-  var checktimeout = 0;
-  function parseCookies() {
-    return document.cookie.split(";").reduce((ac, cv) => {
-      let [key, value] = cv.split("=").map((v) => v.trim());
-      ac[key] = value;
-      return ac;
-    }, {});
-  }
+    <script>
+      var checktimeout = 0;
+      function parseCookies() {
+        return document.cookie.split(";").reduce((ac, cv) => {
+          let [key, value] = cv.split("=").map((v) => v.trim());
+          ac[key] = value;
+          return ac;
+        }, {});
+      }
 
-  function getAdConsentFromCookie() {
-    const cookies = parseCookies();
-    const cookieYesConsent = cookies["cookieyes-consent"];
-    if (cookieYesConsent) {
-      const cookiePairs = cookieYesConsent
-        .split(",")
-        .map((pair) => pair.trim());
-      const cookieObj = {};
-      cookiePairs.forEach((pair) => {
-        const [key, value] = pair.split(":");
-        cookieObj[key] = value;
+      function getAdConsentFromCookie() {
+        const cookies = parseCookies();
+        const cookieYesConsent = cookies["cookieyes-consent"];
+        if (cookieYesConsent) {
+          const cookiePairs = cookieYesConsent
+            .split(",")
+            .map((pair) => pair.trim());
+          const cookieObj = {};
+          cookiePairs.forEach((pair) => {
+            const [key, value] = pair.split(":");
+            cookieObj[key] = value;
+          });
+          return cookieObj.advertisement === "yes";
+        }
+        return false;
+      }
+
+      window.uetq = window.uetq || [];
+      window.uetq.push("consent", "default", {
+        ad_storage: getAdConsentFromCookie() ? "granted" : "denied",
       });
-      return cookieObj.advertisement === "yes";
-    }
-    return false;
-  }
 
-  window.uetq = window.uetq || [];
-  window.uetq.push("consent", "default", {
-    ad_storage: getAdConsentFromCookie() ? "granted" : "denied",
-  });
-
-  document.addEventListener(
+      document.addEventListener(
         "cookieyes_consent_update",
         function (eventData) {
           window.uetq.push("consent", "update", {
-          ad_storage: getCkyConsent().categories.advertisement
-          ? "granted"
-          : "denied",
-    });
-  })
-  // window.addEventListener("load", function () {
-  //   waitForElement(".cky-consent-container", function () {
-  //     document.addEventListener(
-  //       "cookieyes_consent_update",
-  //       function (eventData) {
-  //         window.uetq.push("consent", "update", {
-  //         ad_storage: getCkyConsent().categories.advertisement
-  //         ? "granted"
-  //         : "denied",
-  //   });
-  //       }
-  //     );
-  //   });
-  // });
-
-  // function waitForElement(selector, callback) {
-  //   const element = document.querySelector(selector);
-  //   if (element) return callback();
-  //   checktimeout++;
-  //   if (checktimeout < 120) {
-  //     setTimeout(function () {
-  //       waitForElement(selector, callback);
-  //     }, 500);
-  //   }
-  // }
-</script>
+            ad_storage: getCkyConsent().categories.advertisement
+              ? "granted"
+              : "denied",
+          });
+        }
+      );
+    </script>
     <!--  -->
 
     <!-- custom script -->
@@ -151,9 +127,9 @@
         );
       }
       function externalScript() { -->
-        //add your logic here
-    //   }
-    // </script>
+    <!-- //add your logic here -->
+    <!-- //   } -->
+    <!-- // </script> -->
     <!-- custom script end -->
 
     <!-- google analytics Google tag (gtag.js) -->
