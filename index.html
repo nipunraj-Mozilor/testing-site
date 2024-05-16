@@ -43,94 +43,15 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
-    <!-- mirosoft UET -->
+
     <script>
-      var checktimeout = 0;
-      function parseCookies() {
-        return document.cookie.split(";").reduce((ac, cv) => {
-          let [key, value] = cv.split("=").map((v) => v.trim());
-          ac[key] = value;
-          return ac;
-        }, {});
-      }
-
-      function getAdConsentFromCookie() {
-        const cookies = parseCookies();
-        const cookieYesConsent = cookies["cookieyes-consent"];
-        if (cookieYesConsent) {
-          const cookiePairs = cookieYesConsent
-            .split(",")
-            .map((pair) => pair.trim());
-          const cookieObj = {};
-          cookiePairs.forEach((pair) => {
-            const [key, value] = pair.split(":");
-            cookieObj[key] = value;
-          });
-          return cookieObj.advertisement === "yes";
-        }
-        return false;
-      }
-
-      window.uetq = window.uetq || [];
-      window.uetq.push("consent", "default", {
-        ad_storage: getAdConsentFromCookie() ? "granted" : "denied",
-      });
-
       document.addEventListener(
         "cookieyes_consent_update",
         function (eventData) {
-          window.uetq.push("consent", "update", {
-            ad_storage: getCkyConsent().categories.advertisement
-              ? "granted"
-              : "denied",
-          });
+          console.log("event", eventData.detail);
         }
       );
     </script>
-    <!--  -->
-
-    <!-- custom script -->
-    <!-- <script>
-      let cookies = document.cookie
-        .split(";")
-        .reduce(
-          (ac, cv, i) =>
-            Object.assign(ac, { [cv.split("=")[0]]: cv.split("=")[1] }),
-          {}
-        );
-      const cookieYesConsent = cookies["cookieyes-consent"];
-      let functionalConsent = false;
-      if (cookieYesConsent) {
-        const cookiePairs = cookieYesConsent
-          .split(",")
-          .map((pair) => pair.trim());
-        const cookieObj = {};
-        cookiePairs.forEach((pair) => {
-          const [key, value] = pair.split(":");
-          cookieObj[key] = value;
-        });
-        if (cookieObj.functional === "yes") {
-          functionalConsent = true;
-        }
-      }
-      if (functionalConsent) {
-        externalScript();
-      } else {
-        document.addEventListener(
-          "cookieyes_consent_update",
-          function (eventData) {
-            const data = eventData.detail;
-            if (data.accepted.includes("functional")) {
-              externalScript();
-            }
-          }
-        );
-      }
-      function externalScript() { -->
-    <!-- //add your logic here -->
-    <!-- //   } -->
-    <!-- // </script> -->
-    <!-- custom script end -->
 
     <!-- google analytics Google tag (gtag.js) -->
     <script
