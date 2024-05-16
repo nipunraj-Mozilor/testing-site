@@ -45,14 +45,24 @@
     </script>
 
     <script>
-      document.addEventListener(
-        "cookieyes_consent_update",
-        function (eventData) {
-          console.log("event", eventData.detail);
-        }
-      );
-    </script>
+      window.addEventListener("load", function () {
+        waitForElement(".cky-consent-container", function () {
+          console.log("erjere");
+          console.log(window.getCkyConsent().isUserActionCompleted);
+        });
+      });
 
+      function waitForElement(selector, callback) {
+        const element = document.querySelector(selector);
+        if (element) return callback();
+        checktimeout++;
+        if (checktimeout < 120) {
+          setTimeout(function () {
+            waitForElement(selector, callback);
+          }, 500);
+        }
+      }
+    </script>
     <!-- google analytics Google tag (gtag.js) -->
     <script
       async
