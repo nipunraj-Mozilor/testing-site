@@ -43,77 +43,49 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
-
-    <!-- custom script -->
+    <!-- mirosoft UET -->
     <script>
-      let cookies = document.cookie.split(";").reduce((ac, cv) => {
-        let [key, value] = cv.split("=").map((c) => c.trim());
-        ac[key] = value;
-        return ac;
+      function parseCookies() {
+        return document.cookie.split(";").reduce((ac, cv) => {
+           let [key, value] = cv.split("=").map(v => v.trim());
+           ac[key] = value;
+           return ac;
       }, {});
-
-      const cookieYesConsent = cookies["cookieyes-consent"];
-      let microsoftUETConsent = false;
-
-      if (cookieYesConsent) {
-        const cookiePairs = cookieYesConsent
-          .split(",")
-          .map((pair) => pair.trim());
-        const cookieObj = {};
-        cookiePairs.forEach((pair) => {
-          const [key, value] = pair.split(":");
-          cookieObj[key] = value;
-        });
-        if (cookieObj.advertisement === "yes") {
-          microsoftUETConsent = true;
-        }
       }
 
-      // Default consent setup
+      function getAdConsentFromCookie() {
+        const cookies = parseCookies();
+        console.log("cookies", cookies);
+        const cookieYesConsent = cookies["cookieyes-consent"];
+        if (cookieYesConsent) { 
+          const cookiePairs = cookieYesConsent.split(",").map(pair => pair.trim());
+          const cookieObj = {};
+          cookiePairs.forEach(pair => {
+           const [key, value] = pair.split(":");
+           cookieObj[key] = value;
+          });
+          return cookieObj.advertisement === "yes";
+        }
+        return false;
+      }
+      console.log("value",getAdConsentFromCookie() );
       window.uetq = window.uetq || [];
       window.uetq.push("consent", "default", {
-        ad_storage: microsoftUETConsent ? "granted" : "denied",
+      ad_storage: getAdConsentFromCookie() ? "granted" : "denied",
       });
 
-      // Function to update Microsoft Ads consent
-      function microsoft_ads_consent_update() {
-        console.log("in consent update");
+      document.addEventListener("cookieyes_consent_update", function (eventData) {
+         console.log("in banner update", );
+         mirosoft_ads_consent_update();
+      });
+      console.log("mirosoft_ads_consent_update", mirosoft_ads_consent_update());
+      function mirosoft_ads_consent_update() {
         window.uetq.push("consent", "update", {
-          ad_storage: getCkyConsent().categories.advertisement
-            ? "granted"
-            : "denied",
+        ad_storage: getCkyConsent().categories.advertisement ? "granted" : "denied",
         });
       }
 
-      // Event listener for consent updates
-      document.addEventListener(
-        "cookieyes_consent_update",
-        function (eventData) {
-          const data = eventData.detail;
-          if (data.accepted.includes("advertisement")) {
-            microsoft_ads_consent_update();
-          }
-        }
-      );
     </script>
-
-    <!--  -->
-
-    <!-- microsoft ads ueti -->
-    <script>
-      window.uetq = window.uetq || [];
-      window.uetq.push("consent", "default", {
-        ad_storage: "denied",
-      });
-      window.addEventListener("cookie_consent_update", function () {
-        window.uetq.push("consent", "update", {
-          ad_storage: getCkyConsent().categories.advertisement
-            ? "granted"
-            : "denied",
-        });
-      });
-    </script>
-
     <!--  -->
 
     <!-- custom script -->
@@ -153,12 +125,12 @@
           }
         );
       }
-      function externalScript() {
+      function externalScript() { -->
         //add your logic here
-      }
-    </script> -->
-
+    //   }
+    // </script>
     <!-- custom script end -->
+
     <!-- google analytics Google tag (gtag.js) -->
     <script
       async
@@ -173,168 +145,6 @@
 
       gtag("config", "G-G5Y651DQKV");
     </script>
-
-    <!-- End Google Tag Manager -->
-    <!-- <script>
-      document.addEventListener(
-        "cookieyes_consent_update",
-        function (eventData) {
-          console.log("outside");
-          const data = eventData.detail;
-          if (data.accepted.includes("analytics")) {
-            console.log("inside");
-            // perform desired action.
-          }
-        }
-      );
-    </script> -->
-    <!-- new -->
-    <!-- <script>
-      console.log("law", window.getCkyConsent().activeLaw);
-      var checktimeout = 0;
-      window.addEventListener("load", function () {
-        waitForElement(".cky-consent-container", function () {
-          const btnWrapper = document.querySelector(".cky-notice-btn-wrapper");
-          const acceptAllButton = document.createElement("button");
-
-          if (btnWrapper) {
-            const doNotSellButton = btnWrapper.querySelector(
-              ".cky-btn-do-not-sell"
-            );
-            doNotSellButton.style.padding = "8px 27px";
-            doNotSellButton.style.border = "2px solid #1863dc";
-            doNotSellButton.style.marginRight = "14px";
-          }
-          if (acceptAllButton) {
-            acceptAllButton.innerText = "Accept";
-            acceptAllButton.classList.add("cky-btn", "cky-btn-reject");
-            acceptAllButton.onclick = function () {
-              const closeAction = document.querySelector(
-                ".cky-banner-btn-close"
-              );
-              closeAction.click();
-            };
-          }
-          btnWrapper.appendChild(acceptAllButton);
-        });
-      });
-
-      function waitForElement(selector, callback) {
-        const element = document.querySelector(selector);
-        if (element) return callback();
-        checktimeout++;
-        if (checktimeout < 120) {
-          setTimeout(function () {
-            waitForElement(selector, callback);
-          }, 500);
-        }
-      }
-    </script> -->
-
-    <!-- CY-1298  -->
-    <!-- <script>
-      window.addEventListener("load", function () {
-        waitForElement(".cky-consent-container");
-      });
-
-      let bannerLoaded = false;
-      function waitForElement(selector) {
-        const element = document.querySelector(selector);
-        if (element) {
-          if (bannerLoaded) return;
-          document.addEventListener(
-            "cookieyes_consent_update",
-            function (eventData) {
-              const data = eventData.detail;
-              if (data.rejected.includes("analytics")) {
-                const analyticsToggle = document.querySelector(
-                  "#ckySwitchanalytics"
-                );
-                analyticsToggle.click();
-                performBannerAction("accept_partial");
-                bannerLoaded = true;
-              }
-            }
-          );
-        } else {
-          setTimeout(() => {
-            waitForElement(selector);
-          }, 200);
-        }
-      }
-    </script> -->
-    <!--  -->
-    <!-- <script>
-      window.addEventListener("message", (event) => {
-        console.log("fsd", event.origin);
-        if (event.origin === "https://nipunraj-mozilor.github.io") {
-          if (event.data === "revisitConsent") revisitCkyConsent();
-        }
-      });
-    </script>
-    <script>
-      window.addEventListener("load", function () {
-        waitForElement(".cky-consent-container");
-      });
-      let bannerLoaded = false;
-      function waitForElement(selector) {
-        const element = document.querySelector(selector);
-        if (element) {
-          const display = getDisplayStyle(element);
-          if (bannerLoaded) return;
-          else {
-            document.dispatchEvent(new CustomEvent("cookieyes_banner_show"));
-            bannerLoaded = true;
-          }
-        }
-        setTimeout(() => {
-          waitForElement(selector);
-        }, 200);
-      }
-
-      function getDisplayStyle(element) {
-        return element.currentStyle
-          ? element.currentStyle["display"]
-          : window.getComputedStyle
-          ? window.getComputedStyle(element, null).getPropertyValue("display")
-          : "";
-      }
-    </script>
-    <script>
-      document.addEventListener("cookieyes_banner_show", function (event) {
-        // console.log("getCkyConsent", getCkyConsent());
-      });
-    </script> -->
-    <!--  -->
-    <!--  -->
-    <!-- CY-1136  -->
-    <!-- <script>
-      var checktimeout = 0;
-      window.addEventListener("load", function () {
-        waitForElement(".cky-consent-container", function () {
-          console.log("ere");
-          let regionCode = window.cookieyes._ckyStore._ruleData._regionCode;
-          console.log("regionCode", regionCode);
-          if (regionCode !== "CA") {
-            const container = document.querySelector(".cky-consent-container");
-            container.style.visibility = "hidden";
-          }
-        });
-      });
-
-      function waitForElement(selector, callback) {
-        const element = document.querySelector(selector);
-        if (element) return callback();
-        checktimeout++;
-        if (checktimeout < 120) {
-          setTimeout(function () {
-            waitForElement(selector, callback);
-          }, 100);
-        }
-      }
-    </script> -->
-
-    <!--  -->
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"
