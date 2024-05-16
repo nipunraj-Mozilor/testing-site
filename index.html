@@ -76,9 +76,7 @@
     ad_storage: getAdConsentFromCookie() ? "granted" : "denied",
   });
 
-  window.addEventListener("load", function () {
-    waitForElement(".cky-consent-container", function () {
-      document.addEventListener(
+  document.addEventListener(
         "cookieyes_consent_update",
         function (eventData) {
           window.uetq.push("consent", "update", {
@@ -86,21 +84,32 @@
           ? "granted"
           : "denied",
     });
-        }
-      );
-    });
-  });
 
-  function waitForElement(selector, callback) {
-    const element = document.querySelector(selector);
-    if (element) return callback();
-    checktimeout++;
-    if (checktimeout < 120) {
-      setTimeout(function () {
-        waitForElement(selector, callback);
-      }, 500);
-    }
-  }
+  // window.addEventListener("load", function () {
+  //   waitForElement(".cky-consent-container", function () {
+  //     document.addEventListener(
+  //       "cookieyes_consent_update",
+  //       function (eventData) {
+  //         window.uetq.push("consent", "update", {
+  //         ad_storage: getCkyConsent().categories.advertisement
+  //         ? "granted"
+  //         : "denied",
+  //   });
+  //       }
+  //     );
+  //   });
+  // });
+
+  // function waitForElement(selector, callback) {
+  //   const element = document.querySelector(selector);
+  //   if (element) return callback();
+  //   checktimeout++;
+  //   if (checktimeout < 120) {
+  //     setTimeout(function () {
+  //       waitForElement(selector, callback);
+  //     }, 500);
+  //   }
+  // }
 </script>
     <!--  -->
 
