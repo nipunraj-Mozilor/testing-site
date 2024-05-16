@@ -56,7 +56,6 @@
 
   function getAdConsentFromCookie() {
     const cookies = parseCookies();
-    console.log("cookies", cookies);
     const cookieYesConsent = cookies["cookieyes-consent"];
     if (cookieYesConsent) {
       const cookiePairs = cookieYesConsent
@@ -82,10 +81,10 @@
       document.addEventListener(
         "cookieyes_consent_update",
         function (eventData) {
-              window.uetq.push("consent", "update", {
-      ad_storage: getCkyConsent().categories.advertisement
-        ? "granted"
-        : "denied",
+          window.uetq.push("consent", "update", {
+          ad_storage: getCkyConsent().categories.advertisement
+          ? "granted"
+          : "denied",
     });
         }
       );
