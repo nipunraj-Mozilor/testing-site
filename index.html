@@ -82,21 +82,15 @@
       document.addEventListener(
         "cookieyes_consent_update",
         function (eventData) {
-          console.log("in banner update");
-          mirosoft_ads_consent_update();
-        }
-      );
-    });
-  });
-
-  console.log("mirosoft_ads_consent_update", mirosoft_ads_consent_update());
-  function mirosoft_ads_consent_update() {
-    window.uetq.push("consent", "update", {
+              window.uetq.push("consent", "update", {
       ad_storage: getCkyConsent().categories.advertisement
         ? "granted"
         : "denied",
     });
-  }
+        }
+      );
+    });
+  });
 
   function waitForElement(selector, callback) {
     const element = document.querySelector(selector);
