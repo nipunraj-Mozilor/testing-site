@@ -67,6 +67,7 @@
       document.addEventListener(
         "cookieyes_consent_update",
         function (eventData) {
+          console.log("outside", window.getCkyConsent().isUserActionCompleted);
           const data = eventData.detail;
           if (window.getCkyConsent().isUserActionCompleted) {
             console.log("user here");
