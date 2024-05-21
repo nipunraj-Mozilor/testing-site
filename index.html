@@ -101,15 +101,12 @@
     </script> -->
 
     <script>
-      document.addEventListener(
-        "cookieyes_consent_update",
-        function (eventData) {
-          if (window.getCkyConsent().isUserActionCompleted) {
-            // add your logic here
-            console.log("logic here");
-          }
+      document.addEventListener("cookieyes_consent_update", function () {
+        if (window.getCkyConsent().isUserActionCompleted) {
+          // add your logic here
+          console.log("logic here");
         }
-      );
+      });
     </script>
     <!-- google analytics Google tag (gtag.js) -->
     <script
