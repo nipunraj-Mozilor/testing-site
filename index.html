@@ -104,7 +104,8 @@
       document.addEventListener(
         "cookieyes_consent_update",
         function (eventData) {
-          console.log("DOes it work");
+          const data = eventData.detail;
+          console.log("data", data);
         }
       );
     </script>
