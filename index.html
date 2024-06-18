@@ -3,11 +3,11 @@
   <head>
     <!--  -->
     <!-- Start qa1 nipunraj+testing@mozilor.com cookieyes banner -->
-    <script
+    <!-- <script
       id="cookieyes"
       type="text/javascript"
       src="https://mojoview.com/client_data/e38a0cb6c11b5e43735cd332/script.js"
-    ></script>
+    ></script> -->
     <!-- End cookieyes banner -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/queries.css" />
     <!-- Google Tag Manager -->
-    <!-- <script>
+    <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
@@ -43,7 +43,49 @@
         j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
-    </script> -->
+    </script>
+    <script>
+      const buttons = [
+        ".cky-btn-accept",
+        ".cky-btn-reject",
+        ".cky-btn-preferences",
+      ];
+
+      window.addEventListener("load", function () {
+        waitForElement(".cky-consent-container", handleConsentBannerShown);
+      });
+
+      function waitForElement(selector, callback) {
+        const element = document.querySelector(selector);
+        if (element) {
+          const display = getDisplayStyle(element);
+          if (display !== "none" && display !== "") {
+            return callback(element);
+          }
+        }
+        setTimeout(() => {
+          waitForElement(selector, callback);
+        }, 200);
+      }
+
+      function handleConsentBannerShown(element) {
+        document.body.style.overflow = "hidden";
+        for (let i = 0; i < buttons.length; i++) {
+          const buttonElement = document.querySelector(buttons[i]);
+          buttonElement &&
+            buttonElement.addEventListener("click", () => {
+              document.body.style.overflow = "auto";
+            });
+        }
+      }
+      function getDisplayStyle(element) {
+        return element.currentStyle
+          ? element.currentStyle["display"]
+          : window.getComputedStyle
+          ? window.getComputedStyle(element, null).getPropertyValue("display")
+          : "";
+      }
+    </script>
     <!-- <script>
       let cookies = document.cookie
         .split(";")
@@ -229,14 +271,14 @@
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <!-- <noscript
+    <noscript
       ><iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-WWBB26M"
         height="0"
         width="0"
         style="display: none; visibility: hidden"
       ></iframe
-    ></noscript> -->
+    ></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <header class="header">
       <a href="#">
