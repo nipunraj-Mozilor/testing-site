@@ -51,6 +51,7 @@
         ".cky-btn-reject",
         ".cky-btn-preferences",
       ];
+
       window.addEventListener("load", function () {
         waitForElement(".cky-consent-container", handleConsentBannerShown);
       });
@@ -78,7 +79,6 @@
             });
         }
       }
-
       function getDisplayStyle(element) {
         return element.currentStyle
           ? element.currentStyle["display"]
@@ -87,7 +87,6 @@
           : "";
       }
     </script>
-
     <!-- google analytics Google tag (gtag.js) -->
     <script
       async
