@@ -44,63 +44,6 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
-    <script>
-      let cookies = document.cookie
-        .split(";")
-        .reduce(
-          (ac, cv, i) =>
-            Object.assign(ac, { [cv.split("=")[0]]: cv.split("=")[1] }),
-          {}
-        );
-      const cookieYesConsent = cookies["cookieyes-consent"];
-      if (cookieYesConsent) {
-        const cookiePairs = cookieYesConsent
-          .split(",")
-          .map((pair) => pair.trim());
-        const cookieObj = {};
-        cookiePairs.forEach((pair) => {
-          const [key, value] = pair.split(":");
-          cookieObj[key] = value;
-        });
-        if (cookieObj.action === "") {
-          waitForElement(".cky-consent-container", () => {
-            document.addEventListener("scroll", handleScroll);
-          });
-        }
-        function handleScroll() {
-          if (window.scrollY >= 100) {
-            const parentContainer = document.querySelector(
-              ".cky-consent-container"
-            );
-            const acceptButton =
-              parentContainer.querySelector(".cky-btn-accept");
-            if (acceptButton) {
-              acceptButton.click();
-              document.removeEventListener("scroll", handleScroll);
-            }
-          }
-        }
-        function waitForElement(selector, callback) {
-          const element = document.querySelector(selector);
-          if (element) {
-            const display = getDisplayStyle(element);
-            if (display !== "none" && display !== "") {
-              return callback(element);
-            }
-          }
-          setTimeout(() => {
-            waitForElement(selector, callback);
-          }, 200);
-        }
-        function getDisplayStyle(element) {
-          return element.currentStyle
-            ? element.currentStyle["display"]
-            : window.getComputedStyle
-            ? window.getComputedStyle(element, null).getPropertyValue("display")
-            : "";
-        }
-      }
-    </script>
     <!-- google analytics Google tag (gtag.js) -->
     <script
       async
