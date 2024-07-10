@@ -45,6 +45,20 @@
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
     <!-- End Google Tag Manager -->
+    <!-- shopify -->
+    <script>
+      const handler = {
+        set(target, property, value, receiver) {
+          console.log(`Property ${property} set to ${value}`);
+          handleDataLayerChange(property, value);
+          return Reflect.set(target, property, value, receiver);
+        },
+      };
+      window.dataLayer = new Proxy(window.dataLayer, handler);
+      function handleDataLayerChange(property, value) {
+        console.log(`Change detected in dataLayer: ${property} = ${value}`);
+      }
+    </script>
 
     <!-- CYS-1979 -->
     <!-- <script>
