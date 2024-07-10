@@ -48,13 +48,18 @@
     <!-- shopify -->
     <script>
       const originalPush = window.dataLayer.push;
+
+      const dataLayerChanges = [];
+
       window.dataLayer.push = function (...args) {
         const result = originalPush.apply(this, args);
-        handleDataLayerChange(args);
+
+        collectDataLayerChanges(args);
+
         return result;
       };
-      function handleDataLayerChange(changes) {
-        console.log("New changes added to dataLayer:", changes);
+      function collectDataLayerChanges(changes) {
+        dataLayerChanges.push(...changes);
       }
     </script>
 
