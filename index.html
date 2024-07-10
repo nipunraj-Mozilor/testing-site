@@ -47,16 +47,14 @@
     <!-- End Google Tag Manager -->
     <!-- shopify -->
     <script>
-      const handler = {
-        set(target, property, value, receiver) {
-          console.log(`Property ${property} set to ${value}`);
-          handleDataLayerChange(property, value);
-          return Reflect.set(target, property, value, receiver);
-        },
+      const originalPush = window.dataLayer.push;
+      window.dataLayer.push = function (...args) {
+        const result = originalPush.apply(this, args);
+        handleDataLayerChange(args);
+        return result;
       };
-      window.dataLayer = new Proxy(window.dataLayer, handler);
-      function handleDataLayerChange(property, value) {
-        console.log(`Change detected in dataLayer: ${property} = ${value}`);
+      function handleDataLayerChange(changes) {
+        console.log("New changes added to dataLayer:", changes);
       }
     </script>
 
