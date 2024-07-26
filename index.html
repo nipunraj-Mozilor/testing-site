@@ -108,11 +108,13 @@
     <!-- new -->
 
     <script>
+      let analyticsConsent = false;
       document.addEventListener("cookieyes_banner_load", function (eventData) {
         const data = eventData.detail;
         console.log("analytics in load", data.categories.analytics);
-        if (data.categories.analytics) {
+        if (data.categories.analytics && !analyticsConsent) {
           addScript();
+          analyticsConsent = true;
         }
       });
 
@@ -124,12 +126,12 @@
             "analytics in update",
             data.accepted.includes("analytics")
           );
-          if (data.accepted.includes("analytics")) {
+          if (data.accepted.includes("analytics") && !analyticsConsent) {
             addScript();
+            analyticsConsent = true;
           }
         }
       );
-
       function addScript() {
         var analyticsScript = document.createElement("script");
         analyticsScript.src = "https://example.com/your-mozilor.js";
