@@ -45,63 +45,6 @@
       })(window, document, "script", "dataLayer", "GTM-WWBB26M");
     </script>
     <!-- End Google Tag Manager -->
-    <!-- shopify -->
-    <script>
-      const originalPush = window.dataLayer.push;
-
-      const dataLayerChanges = [];
-
-      window.dataLayer.push = function (...args) {
-        const result = originalPush.apply(this, args);
-
-        collectDataLayerChanges(args);
-
-        return result;
-      };
-      function collectDataLayerChanges(changes) {
-        dataLayerChanges.push(...changes);
-      }
-    </script>
-
-    <!-- CYS-1979 -->
-    <!-- <script>
-      const buttons = [
-        ".cky-btn-accept",
-        ".cky-btn-reject",
-        ".cky-btn-preferences",
-      ];
-      function waitForElement(e, t) {
-        let n = document.querySelector(e);
-        if (n) {
-          let o = getDisplayStyle(n);
-          if ("none" !== o && "" !== o) return t(n);
-        }
-        setTimeout(() => {
-          waitForElement(e, t);
-        }, 200);
-      }
-      function handleConsentBannerShown(e) {
-        document.body.style.overflow = "hidden";
-        for (let t = 0; t < buttons.length; t++) {
-          let n = document.querySelector(buttons[t]);
-          n &&
-            n.addEventListener("click", () => {
-              document.body.style.overflow = "auto";
-            });
-        }
-      }
-      function getDisplayStyle(e) {
-        return e.currentStyle
-          ? e.currentStyle.display
-          : window.getComputedStyle
-          ? window.getComputedStyle(e, null).getPropertyValue("display")
-          : "";
-      }
-      window.addEventListener("load", function () {
-        waitForElement(".cky-consent-container", handleConsentBannerShown);
-      });
-    </script> -->
-    <!-- google analytics Google tag (gtag.js) -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-G5Y651DQKV"
@@ -131,6 +74,39 @@
     <script defer src="js/script.js"></script>
 
     <title>Omnifood &mdash; Never cook again!</title>
+    <!--  -->
+    <script>
+      let analyticsConsent = false;
+      document.addEventListener(
+        "cookieyes_consent_update",
+        function (eventData) {
+          const data = eventData.detail;
+          if (data.accepted.includes("analytics")) {
+            analyticsConsent = true;
+            addScript();
+          }
+        }
+      );
+
+      if (analyticsConsent) {
+        document.addEventListener(
+          "cookieyes_banner_load",
+          function (eventData) {
+            const data = eventData.detail;
+            if (data.categories.analytics) {
+              addScript();
+            }
+          }
+        );
+      }
+      function addScript() {
+        var analyticsScript = document.createElement("script");
+        analyticsScript.src = "https://example.com/your-nipun.js";
+        document.head.appendChild(analyticsScript);
+      }
+    </script>
+
+    <!--  -->
     <!-- Meta Pixel Code -->
     <!-- <script>
       !(function (f, b, e, v, n, t, s) {
