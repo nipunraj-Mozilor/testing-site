@@ -111,6 +111,7 @@
       let analyticsConsent = false;
       document.addEventListener("cookieyes_banner_load", function (eventData) {
         const data = eventData.detail;
+        console.log("analytics in load", data.categories.analytics);
         if (data.categories.analytics) {
           analyticsConsent = true;
         }
