@@ -76,24 +76,23 @@
     <title>Omnifood &mdash; Never cook again!</title>
     <!--  -->
     <script>
-      var analyticsConsent = false;
-      document.addEventListener(
-        "cookieyes_consent_update",
-        function (eventData) {
-          const data = eventData.detail;
-          if (data.accepted.includes("analytics")) {
-            analyticsConsent = true;
-            addScript();
-          }
+      let analyticsConsent = false;
+
+      document.addEventListener("cookieyes_banner_load", function (eventData) {
+        const data = eventData.detail;
+        if (data.categories.analytics) {
+          addScript();
+          analyticsConsent = true;
         }
-      );
+      });
+
       console.log("analyticsConsent", analyticsConsent);
       if (analyticsConsent) {
         document.addEventListener(
-          "cookieyes_banner_load",
+          "cookieyes_consent_update",
           function (eventData) {
             const data = eventData.detail;
-            if (data.categories.analytics) {
+            if (data.accepted.includes("analytics")) {
               addScript();
             }
           }
