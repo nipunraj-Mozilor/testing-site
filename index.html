@@ -114,6 +114,10 @@
         "cookieyes_consent_update",
         function (eventData) {
           const data = eventData.detail;
+          console.log(
+            "analytics in update",
+            data.accepted.includes("analytics")
+          );
           if (data.accepted.includes("analytics")) {
             analyticsConsent = true;
           }
@@ -121,18 +125,25 @@
       );
 
       document.addEventListener("cookieyes_banner_load", function (eventData) {
-        if (!analyticsConsent) return;
-        const data = eventData.detail;
-        console.log("analytics in load", data.categories.analytics);
-        if (data.categories.analytics) {
-          addScript();
+        if (analyticsConsent) {
+          const data = eventData.detail;
+          console.log("analytics in load", data.categories.analytics);
+          if (data.categories.analytics) {
+            addScript();
+          }
         }
       });
 
       function addScript() {
-        var analyticsScript = document.createElement("script");
-        analyticsScript.src = "https://example.com/your-borosil.js";
-        document.head.appendChild(analyticsScript);
+        if (
+          !document.querySelector(
+            'script[src="https://example.com/your-mozilor.js"]'
+          )
+        ) {
+          var analyticsScript = document.createElement("script");
+          analyticsScript.src = "https://example.com/your-mozilor.js";
+          document.head.appendChild(analyticsScript);
+        }
       }
     </script>
 
