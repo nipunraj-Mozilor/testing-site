@@ -122,7 +122,6 @@
 
       document.addEventListener("cookieyes_banner_load", function (eventData) {
         if (!analyticsConsent) return;
-
         const data = eventData.detail;
         console.log("analytics in load", data.categories.analytics);
         if (data.categories.analytics) {
@@ -131,15 +130,9 @@
       });
 
       function addScript() {
-        if (
-          !document.querySelector(
-            'script[src="https://example.com/your-mozilor.js"]'
-          )
-        ) {
-          var analyticsScript = document.createElement("script");
-          analyticsScript.src = "https://example.com/your-mozilor.js";
-          document.head.appendChild(analyticsScript);
-        }
+        var analyticsScript = document.createElement("script");
+        analyticsScript.src = "https://example.com/your-borosil.js";
+        document.head.appendChild(analyticsScript);
       }
     </script>
 
