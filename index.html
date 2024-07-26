@@ -125,6 +125,7 @@
       );
 
       document.addEventListener("cookieyes_banner_load", function (eventData) {
+        console.log("hre");
         if (analyticsConsent) {
           const data = eventData.detail;
           console.log("analytics in load", data.categories.analytics);
