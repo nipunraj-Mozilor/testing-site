@@ -76,7 +76,6 @@
     <title>Omnifood &mdash; Never cook again!</title>
     <!--  -->
     <script>
-      console.log("analyticsConsent", analyticsConsent);
       var analyticsConsent = false;
       document.addEventListener(
         "cookieyes_consent_update",
@@ -88,7 +87,7 @@
           }
         }
       );
-
+      console.log("analyticsConsent", analyticsConsent);
       if (analyticsConsent) {
         document.addEventListener(
           "cookieyes_banner_load",
