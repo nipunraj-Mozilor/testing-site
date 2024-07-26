@@ -108,15 +108,11 @@
     <!-- new -->
 
     <script>
-      let analyticsConsent = false;
-
       document.addEventListener("cookieyes_banner_load", function (eventData) {
-        console.log("hre");
-
         const data = eventData.detail;
         console.log("analytics in load", data.categories.analytics);
         if (data.categories.analytics) {
-          analyticsConsent = true;
+          addScript();
         }
       });
 
@@ -129,14 +125,10 @@
             data.accepted.includes("analytics")
           );
           if (data.accepted.includes("analytics")) {
-            analyticsConsent = true;
+            addScript();
           }
         }
       );
-      console.log("last", analyticsConsent);
-      if (analyticsConsent) {
-        addScript();
-      }
 
       function addScript() {
         var analyticsScript = document.createElement("script");
