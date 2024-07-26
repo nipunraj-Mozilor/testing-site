@@ -112,13 +112,11 @@
 
       document.addEventListener("cookieyes_banner_load", function (eventData) {
         console.log("hre");
-        if (analyticsConsent) {
-          const data = eventData.detail;
-          console.log("analytics in load", data.categories.analytics);
-          if (data.categories.analytics) {
-            // addScript();
-            analyticsConsent = true;
-          }
+
+        const data = eventData.detail;
+        console.log("analytics in load", data.categories.analytics);
+        if (data.categories.analytics) {
+          analyticsConsent = true;
         }
       });
 
