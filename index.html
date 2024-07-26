@@ -136,15 +136,9 @@
       });
 
       function addScript() {
-        if (
-          !document.querySelector(
-            'script[src="https://example.com/your-mozilor.js"]'
-          )
-        ) {
-          var analyticsScript = document.createElement("script");
-          analyticsScript.src = "https://example.com/your-mozilor.js";
-          document.head.appendChild(analyticsScript);
-        }
+        var analyticsScript = document.createElement("script");
+        analyticsScript.src = "https://example.com/your-mozilor.js";
+        document.head.appendChild(analyticsScript);
       }
     </script>
 
