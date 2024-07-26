@@ -118,17 +118,16 @@
       console.log("analyticsConsent", analyticsConsent);
       if (analyticsConsent) {
         addScript();
-      } else {
-        document.addEventListener(
-          "cookieyes_consent_update",
-          function (eventData) {
-            const data = eventData.detail;
-            if (data.accepted.includes("analytics")) {
-              addScript();
-            }
-          }
-        );
       }
+      document.addEventListener(
+        "cookieyes_consent_update",
+        function (eventData) {
+          const data = eventData.detail;
+          if (data.accepted.includes("analytics")) {
+            addScript();
+          }
+        }
+      );
 
       function addScript() {
         var analyticsScript = document.createElement("script");
