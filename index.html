@@ -183,7 +183,7 @@
     <!-- facebook consent mode cookieyes end -->
 
     <!-- facebook consent mode -->
-    <!-- <script>
+    <script>
       !(function (f, b, e, v, n, t, s) {
         if (f.fbq) return;
         n = f.fbq = function () {
@@ -216,17 +216,22 @@
       }
 
       document.addEventListener("cookieyes_consent_update", (eventData) => {
-        console.log("eventData cookieyes_consent_update", eventData);
+        console.log(
+          "eventData cookieyes_consent_update",
+          eventData.detail.accepted.includes("advertisement")
+        );
         const data = eventData.detail;
         handleConsent(data.accepted && data.accepted.includes("advertisement"));
       });
       document.addEventListener("cookieyes_banner_load", (eventData) => {
-        console.log("eventData cookieyes_banner_load", eventData);
+        console.log(
+          "eventData cookieyes_banner_load",
+          eventData.detail.categories.advertisement
+        );
         const data = eventData.detail;
         handleConsent(data.categories && data.categories.advertisement);
       });
-    </script> -->
-
+    </script>
     <!-- end facebook consent mode -->
   </head>
   <body>
