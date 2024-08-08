@@ -216,6 +216,7 @@
       }
 
       document.addEventListener("cookieyes_consent_update", (eventData) => {
+        console.log("eventData", eventData);
         const data = eventData.detail;
         handleConsent(data.accepted && data.accepted.includes("advertisement"));
       });
