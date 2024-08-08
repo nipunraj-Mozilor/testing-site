@@ -216,11 +216,12 @@
       }
 
       document.addEventListener("cookieyes_consent_update", (eventData) => {
-        console.log("eventData", eventData);
+        console.log("eventData cookieyes_consent_update", eventData);
         const data = eventData.detail;
         handleConsent(data.accepted && data.accepted.includes("advertisement"));
       });
       document.addEventListener("cookieyes_banner_load", (eventData) => {
+        console.log("eventData cookieyes_banner_load", eventData);
         const data = eventData.detail;
         handleConsent(data.categories && data.categories.advertisement);
       });
