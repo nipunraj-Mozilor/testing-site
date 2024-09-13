@@ -40,40 +40,48 @@
         let hasAnalyticsConsent = false;
 
         const originalInquiryButtonText = inquiryButton.innerText;
+
         inquiryButton.innerText =
-          "Please accept Analytics cookie to enable this form";
+          "Please accept marketing cookie to enable this form";
 
         inquiryForm.addEventListener("submit", function (event) {
           if (!hasAnalyticsConsent) {
-            event.preventDefault(); // Block form submission
+            event.preventDefault();
             console.log(
               "Form submission blocked. Please accept marketing cookies."
             );
-            return;
           }
+
           console.log("Form submitted");
         });
 
-        function handleConsent(eventData) {
-          if (hasAnalyticsConsent) {
-            inquiryButton.innerText = originalInquiryButtonText;
-            hasAnalyticsConsent = true;
-            console.log("Marketing consent granted. Button enabled.");
-          } else {
-            inquiryButton.innerText =
-              "Please accept marketing cookie to enable this form";
-            hasAnalyticsConsent = false;
-          }
+        function enableInquiryButton() {
+          inquiryButton.innerText = originalInquiryButtonText;
+          hasAnalyticsConsent = true;
+          console.log("Marketing consent granted. Button enabled.");
         }
 
-        document.addEventListener("cookieyes_consent_update", (eventData) => {
-          const data = eventData.detail;
-          handleConsent(data.accepted && data.accepted.includes("analytics"));
-        });
-        document.addEventListener("cookieyes_banner_load", (eventData) => {
-          const data = eventData.detail;
-          handleConsent(data.categories && data.categories.analytics);
-        });
+        document.addEventListener(
+          "cookieyes_consent_update",
+          function (eventData) {
+            const data = eventData.detail;
+
+            if (data.accepted.includes("analytics")) {
+              console.log("accepetedin consent update");
+              enableInquiryButton();
+            }
+          }
+        );
+
+        document.addEventListener(
+          "cookieyes_banner_load",
+          function (eventData) {
+            const data = eventData.detail;
+            if (data.categories.analytics) {
+              enableInquiryButton();
+            }
+          }
+        );
       });
     </script>
 
