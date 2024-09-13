@@ -33,6 +33,12 @@
       type="text/javascript"
       src="https://cdn-cookieyes.com/client_data/1596c1ab62250ea35f20861e/script.js"
     ></script>
+    <script>
+      document.addEventListener("cookieyes_banner_load", function (eventData) {
+        console.log("Banner loaded", eventData.detail);
+        console.log("here", getCkyConsent());
+      });
+    </script>
 
     <!-- End cookieyes banner -->
     <meta charset="UTF-8" />
