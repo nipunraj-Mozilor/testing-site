@@ -34,14 +34,34 @@
       src="https://cdn-cookieyes.com/client_data/1596c1ab62250ea35f20861e/script.js"
     ></script>
     <script>
+      const signupButton = document.querySelector(".testCookieconsent");
+      console.log("button", signupButton);
+
+      signupButton.disabled = true;
+      signupButton.innerText =
+        "Please accept marketing cookie to enable this form";
+
+      signupButton.addEventListener("click", function () {
+        if (signupButton.disabled) {
+          revisitCkyConsent();
+        }
+      });
+
+      function enableSignupButton() {
+        signupButton.disabled = false;
+        signupButton.innerText = "Sign up now";
+        console.log("Marketing consent granted. Button enabled.");
+      }
+
       document.addEventListener(
         "cookieyes_consent_update",
         function (eventData) {
           const data = eventData.detail;
 
           if (data.accepted.includes("analytics")) {
+            console.log("accepetedin consent update");
             // Perform the desired action for analytics consent
-            performAnalyticsAction();
+            enableSignupButton();
           }
         }
       );
@@ -49,7 +69,8 @@
       document.addEventListener("cookieyes_banner_load", function (eventData) {
         const data = eventData.detail;
         if (data.categories.analytics) {
-          performAnalyticsAction();
+          console.log("accepetedin banner load");
+          enableSignupButton();
         }
       });
 
