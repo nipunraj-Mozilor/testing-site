@@ -55,7 +55,7 @@
         });
 
         function handleConsent(eventData) {
-          if (hasConsent) {
+          if (hasAnalyticsConsent) {
             inquiryButton.innerText = originalInquiryButtonText;
             hasAnalyticsConsent = true;
             console.log("Marketing consent granted. Button enabled.");
