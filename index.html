@@ -36,22 +36,16 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const signupButton = document.querySelector(".testCookieconsent");
-        console.log("button", signupButton);
 
-        signupButton.disabled = true;
         signupButton.innerText =
           "Please accept marketing cookie to enable this form";
 
         signupButton.addEventListener("click", function () {
-          console.log("inside the funtion");
-          if (signupButton.disabled) {
-            console.log("revisit");
-            revisitCkyConsent();
-          }
+          console.log("revisit");
+          revisitCkyConsent();
         });
 
         function enableSignupButton() {
-          signupButton.disabled = false;
           signupButton.innerText = "Sign up now";
           console.log("Marketing consent granted. Button enabled.");
         }
