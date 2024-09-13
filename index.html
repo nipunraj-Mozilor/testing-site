@@ -35,22 +35,27 @@
     ></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const signupButton = document.querySelector(".testCookieconsent");
-        let hasMarketingConsent = false;
+        const inquiryButton = document.querySelector(".testCookieconsent");
+        const inquiryForm = document.querySelector(".form-horizontal");
+        let hasAnalyticsConsent = false;
 
-        signupButton.innerText =
+        inquiryButton.innerText =
           "Please accept marketing cookie to enable this form";
 
-        signupButton.addEventListener("click", function () {
-          if (!hasMarketingConsent) {
-            console.log("revisit");
-            revisitCkyConsent();
+        inquiryForm.addEventListener("submit", function (event) {
+          if (!hasAnalyticsConsent) {
+            event.preventDefault();
+            console.log(
+              "Form submission blocked. Please accept marketing cookies."
+            );
           }
+
+          console.log("Form submitted");
         });
 
-        function enableSignupButton() {
-          signupButton.innerText = "Sign up now";
-          hasMarketingConsent = true;
+        function enableInquiryButton() {
+          inquiryButton.innerText = "Sign up now";
+          hasAnalyticsConsent = true;
           console.log("Marketing consent granted. Button enabled.");
         }
 
@@ -61,8 +66,7 @@
 
             if (data.accepted.includes("analytics")) {
               console.log("accepetedin consent update");
-              // Perform the desired action for analytics consent
-              enableSignupButton();
+              enableInquiryButton();
             }
           }
         );
@@ -72,8 +76,7 @@
           function (eventData) {
             const data = eventData.detail;
             if (data.categories.analytics) {
-              console.log("accepetedin banner load");
-              enableSignupButton();
+              enableInquiryButton();
             }
           }
         );
@@ -773,7 +776,12 @@
                 first meal is on us!
               </p>
 
-              <form id="cta-form-id" class="cta-form" name="sign-up" netlify>
+              <form
+                id="cta-form-id"
+                class="cta-form form-horizontal"
+                name="sign-up"
+                netlify
+              >
                 <div>
                   <label for="full-name">Full Name</label>
                   <input
