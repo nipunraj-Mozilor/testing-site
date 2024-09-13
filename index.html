@@ -39,6 +39,8 @@
         const inquiryForm = document.querySelector(".form-horizontal");
         let hasAnalyticsConsent = false;
 
+        const originalInquiryButtonText = inquiryButton.innerText;
+
         inquiryButton.innerText =
           "Please accept marketing cookie to enable this form";
 
@@ -54,7 +56,7 @@
         });
 
         function enableInquiryButton() {
-          inquiryButton.innerText = "Sign up now";
+          inquiryButton.innerText = originalInquiryButtonText;
           hasAnalyticsConsent = true;
           console.log("Marketing consent granted. Button enabled.");
         }
