@@ -37,10 +37,27 @@
       document.addEventListener(
         "cookieyes_consent_update",
         function (eventData) {
-          console.log("Banner loaded", eventData.detail);
-          console.log("here", getCkyConsent());
+          const data = eventData.detail;
+
+          if (data.accepted.includes("analytics")) {
+            // Perform the desired action for analytics consent
+            performAnalyticsAction();
+          }
         }
       );
+
+      document.addEventListener("cookieyes_banner_load", function (eventData) {
+        const data = eventData.detail;
+        if (data.categories.analytics) {
+          performAnalyticsAction();
+        }
+      });
+
+      // Function to perform the analytics action
+      function performAnalyticsAction() {
+        console.log("Analytics consent granted. Performing action...");
+        document.querySelector(".");
+      }
     </script>
 
     <!-- End cookieyes banner -->
@@ -771,7 +788,9 @@
                   </select>
                 </div>
 
-                <button class="btn btn--form">Sign up now</button>
+                <button class="btn btn--form testCookieconsent">
+                  Sign up now
+                </button>
 
                 <!-- <input type="checkbox" />
                 <input type="number" /> -->
