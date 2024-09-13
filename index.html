@@ -43,8 +43,9 @@
           "Please accept marketing cookie to enable this form";
 
         signupButton.addEventListener("click", function () {
+          console.log("inside the funtion");
           if (signupButton.disabled) {
-            console.log("revisit")
+            console.log("revisit");
             revisitCkyConsent();
           }
         });
