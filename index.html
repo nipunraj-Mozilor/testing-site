@@ -46,9 +46,12 @@
 
         inquiryForm.addEventListener("submit", function (event) {
           if (!hasAnalyticsConsent) {
-            console.log(
-              "Form submission blocked. Please accept marketing cookies."
-            );
+            event.preventDefault();
+          }
+        });
+
+        inquiryForm.addEventListener("click", function (event) {
+          if (!hasAnalyticsConsent) {
             revisitCkyConsent();
           }
         });
