@@ -44,15 +44,15 @@
         inquiryButton.innerText =
           "Please accept marketing cookie to enable this form";
 
-        // inquiryForm.addEventListener("click", function (event) {
-        //   if (!hasAnalyticsConsent) {
-        //     event.preventDefault();
-        //   }
-        // });
+        inquiryForm.addEventListener("submit", function (event) {
+          if (!hasAnalyticsConsent) {
+            revisitCkyConsent();
+          }
+        });
 
         inquiryForm.addEventListener("click", function (event) {
           if (!hasAnalyticsConsent) {
-            revisitCkyConsent();
+            console.log("clicked");
           }
         });
 
