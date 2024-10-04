@@ -44,11 +44,11 @@
         inquiryButton.innerText =
           "Please accept marketing cookie to enable this form";
 
-        inquiryForm.addEventListener("submit", function (event) {
-          if (!hasAnalyticsConsent) {
-            event.preventDefault();
-          }
-        });
+        // inquiryForm.addEventListener("click", function (event) {
+        //   if (!hasAnalyticsConsent) {
+        //     event.preventDefault();
+        //   }
+        // });
 
         inquiryForm.addEventListener("click", function (event) {
           if (!hasAnalyticsConsent) {
