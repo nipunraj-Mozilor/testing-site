@@ -33,7 +33,7 @@
       type="text/javascript"
       src="https://cdn-cookieyes.com/client_data/1596c1ab62250ea35f20861e/script.js"
     ></script> -->
-    <script>
+    <!-- <script>
       document.addEventListener("DOMContentLoaded", function () {
         const inquiryButton = document.querySelector(".testCookieconsent");
         const inquiryForm = document.querySelector(".form-horizontal");
@@ -84,9 +84,57 @@
           }
         );
       });
-    </script>
+    </script> -->
 
     <!-- End cookieyes banner -->
+    <!-- Start cookieyes banner -->
+    <script
+      id="cookieyes"
+      type="text/javascript"
+      src="https://cdn-cookieyes.com/client_data/1596c1ab62250ea35f20861e/script.js"
+    ></script>
+    <!-- End cookieyes banner -->
+    <script>
+      function getCookieValue(name) {
+        const cookies = document.cookie.split(";").reduce((acc, curr) => {
+          const [key, value] = curr.split("=").map((part) => part.trim());
+          acc[key] = value;
+          return acc;
+        }, {});
+
+        return cookies[name] || null;
+      }
+      function getConsentStateForCategory(categoryConsent) {
+        return categoryConsent === "yes" ? "granted" : "denied";
+      }
+
+      const consentString = getCookieValue("cookieyes-consent");
+      if (consentString && typeof consentString === "string") {
+        const cookieObj = consentString.split(",").reduce(function (acc, curr) {
+          const cookieValue = curr.trim().split(":");
+          acc[cookieValue[0]] = getConsentStateForCategory(cookieValue[1]);
+          return acc;
+        }, {});
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("consent", "default", {
+          ad_storage: cookieObj.advertisement,
+          ad_user_data: cookieObj.advertisement,
+          ad_personalization: cookieObj.advertisement,
+          analytics_storage: cookieObj.analytics,
+          functionality_storage: cookieObj.functional,
+          personalization_storage: cookieObj.functional,
+          security_storage: cookieObj.necessary,
+          wait_for_update: 2000,
+        });
+        gtag("set", "ads_data_redaction", true);
+        gtag("set", "url_passthrough", true);
+      }
+    </script>
+
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
@@ -152,7 +200,8 @@
     <script defer src="js/script.js"></script>
 
     <title>Omnifood &mdash; Never cook again!</title>
-    <script>
+    <!-- adding script based on banner intraction -->
+    <!-- <script>
       let analyticsConsent = false;
       document.addEventListener("cookieyes_banner_load", function (eventData) {
         const data = eventData.detail;
@@ -177,7 +226,7 @@
         analyticsScript.src = "https://example.com/your-custom.js";
         document.head.appendChild(analyticsScript);
       }
-    </script>
+    </script> -->
 
     <!-- facebook consent mode -->
     <script>
