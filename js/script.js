@@ -1,7 +1,7 @@
 // console.log("Hello world!");
 
 const myName = "Jonas Schmedtmann";
-const h1 = document.querySelector(".heading-primary");
+const h1 = document.getElementById('heading-primary');
 // console.log(myName);
 // console.log(h1);
 
@@ -20,8 +20,11 @@ const h1 = document.querySelector(".heading-primary");
 ///////////////////////////////////////////////////////////
 // Make mobile navigation work
 
-const btnNavEl = document.querySelector(".btn-mobile-nav");
-const headerEl = document.querySelector(".header");
+let btnNavEl, headerEl;
+document.addEventListener('DOMContentLoaded', (event) => {
+  btnNavEl = document.querySelector(".btn-mobile-nav");
+  headerEl = document.querySelector(".header");
+});
 
 btnNavEl.addEventListener("click", function () {
   headerEl.classList.toggle("nav-open");
@@ -66,13 +69,7 @@ const obs = new IntersectionObserver(
     const ent = entries[0];
     // console.log(ent);
 
-    if (ent.isIntersecting === false) {
-      document.body.classList.add("sticky");
-    }
-
-    if (ent.isIntersecting === true) {
-      document.body.classList.remove("sticky");
-    }
+    document.body.classList.toggle('sticky', !ent.isIntersecting);
   },
   {
     // In the viewport
@@ -95,7 +92,7 @@ function checkFlexGap() {
   flex.appendChild(document.createElement("div"));
 
   document.body.appendChild(flex);
-  var isSupported = flex.scrollHeight === 1;
+  let isSupported = flex.scrollHeight === 1;
   flex.parentNode.removeChild(flex);
   // console.log(isSupported);
 
