@@ -20,8 +20,8 @@ const h1 = document.querySelector(".heading-primary");
 ///////////////////////////////////////////////////////////
 // Make mobile navigation work
 
-const btnNavEl = document.querySelector(".btn-mobile-nav");
-const headerEl = document.querySelector(".header");
+const btnNavEl = document.getElementById("btn-mobile-nav");
+const headerEl = document.getElementById("header");
 
 btnNavEl.addEventListener("click", function () {
   headerEl.classList.toggle("nav-open");
@@ -30,7 +30,7 @@ btnNavEl.addEventListener("click", function () {
 ///////////////////////////////////////////////////////////
 // Smooth scrolling animation
 
-const allLinks = document.querySelectorAll("a:link");
+const allLinks = document.getElementsByTagName("a");
 
 allLinks.forEach(function (link) {
   link.addEventListener("click", function (e) {
@@ -59,7 +59,7 @@ allLinks.forEach(function (link) {
 ///////////////////////////////////////////////////////////
 // Sticky navigation
 
-const sectionHeroEl = document.querySelector(".section-hero");
+const sectionHeroEl = document.getElementById("section-hero");
 
 const obs = new IntersectionObserver(
   function (entries) {
