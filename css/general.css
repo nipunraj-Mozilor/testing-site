@@ -57,7 +57,7 @@ Medium: 11px
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
 */
 
-* {
+body, h1, h2, h3, h4, h5, h6, p, div {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -211,11 +211,7 @@ body {
 .btn--outline:hover,
 .btn--outline:active {
   background-color: #fdf2e9;
-
-  /* border: 3px solid #fff; */
-
-  /* Trick to add border inside */
-  box-shadow: inset 0 0 0 3px #fff;
+  border: 3px solid #fff;
 }
 
 .btn--form {
@@ -268,10 +264,8 @@ body {
 }
 
 *:focus {
-  outline: none;
-  /* outline: 4px dotted #e67e22; */
-  /* outline-offset: 8px; */
-  box-shadow: 0 0 0 0.8rem rgba(230, 125, 34, 0.5);
+  outline: 4px dotted #e67e22;
+  outline-offset: 8px;
 }
 
 /* HELPER/SETTINGS CLASSES */
@@ -288,5 +282,5 @@ body {
 }
 
 strong {
-  font-weight: 500;
+  font-weight: bold;
 }
