@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,11 +9,12 @@
       id="cookieyes"
       type="text/javascript"
       src="https://cdn-cookieyes.com/client_data/1596c1ab62250ea35f20861e/script.js"
+      defer
     ></script>
     <!-- End cookieyes banner -->
-    <title>Document</title>
+    <title>Cookie Policy - Your Website Name</title>
   </head>
-  <style>
+  <link rel="stylesheet" href="styles.css">
     a.cky-banner-element {
       padding: 8px 30px;
       background: #f8f9fa;
@@ -26,14 +27,18 @@
   </style>
 
   <body>
+    <header>
+      <h1 class="cookie-policy-h1">Cookie Policy</h1>
+    </header>
+    <main>
     <h1 class="cookie-policy-h1">Cookie Policy</h1>
     <p>
       Effective Date: 16-Apr-2024 <br />
       Last Updated: 16-Apr-2024
     </p>
 
-    &nbsp;
-    <h5>What are cookies?</h5>
+    <br/>
+    <h2>What are cookies?</h2>
     <div class="cookie-policy-p">
       <p>
         This Cookie Policy explains what cookies are and how we use them, the
@@ -76,7 +81,7 @@
     &nbsp;
     <h5 style="margin-bottom: 20px">Manage cookie preferences</h5>
 
-    <a class="cky-banner-element">Cookie Settings</a>
+    <a class="cky-banner-element" role="button">Cookie Settings</a>
     <br />
 
     <div>
@@ -139,5 +144,6 @@
         >CookieYes - Cookie Policy Generator</a
       >.
     </p>
+  </main>
   </body>
 </html>
