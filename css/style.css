@@ -15,7 +15,8 @@
 }
 
 .logo {
-  height: 2.2rem;
+  height: auto;
+  max-width: 100%;
 }
 
 /**************************/
@@ -121,6 +122,7 @@
 
 .hero-img {
   width: 100%;
+  height: auto;
 }
 
 .delivered-meals {
@@ -135,8 +137,8 @@
 }
 
 .delivered-imgs img {
-  height: 4.8rem;
-  width: 4.8rem;
+  max-width: 100%;
+  height: auto;
   border-radius: 50%;
   margin-right: -1.6rem;
   border: 3px solid #fdf2e9;
@@ -180,7 +182,8 @@
 }
 
 .logos img {
-  height: 3.2rem;
+  max-width: 100%;
+  height: auto;
   filter: brightness(0);
   opacity: 50%;
 }
@@ -243,7 +246,8 @@
 }
 
 .step-img {
-  width: 35%;
+  max-width: 100%;
+  height: auto;
   /* z-index: 10; */
 }
 
@@ -325,7 +329,8 @@
 }
 
 .meal-img {
-  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 .all-recipes {
@@ -356,7 +361,8 @@
 }
 
 .testimonial-img {
-  width: 6.4rem;
+  max-width: 100%;
+  height: auto;
   border-radius: 50%;
   margin-bottom: 1.2rem;
 }
@@ -385,7 +391,8 @@
 
 .gallery-item img {
   display: block;
-  width: 100%;
+  max-width: 100%;
+  height: auto;
   transition: all 0.4s;
 }
 
